@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+</head>
+
+<body style="background-color: #5b9b87;">
+  <div class="container-fluid" style="color:#01081b;height:100px; border: 3px solid #000;;">
+    <h3> Welcome to the merchantpage.</h3> <br>
+    <h5>Hello {{ user }}</h5>
+    <div class="topright" style="position: absolute; top: 8px; right: 16px;font-size: 18px;">
+      <a href="{% url 'polls:logout'%}" class="signup-tag" style="color: #571616;"> Log out</a></div>
+  </div>
+  <h2>Existing  products</h2><br><br>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>    
+  {{ message }}</div>
+      {% endfor %}
+  {% endif %}
+
+  {% if "Merchant" in group_names %}
+
+  <div class="container sandal-list">      
+  
+    <div class="row">
+    {% for product in products %}
+    
+    
+    <div class="col-sm-4" >
+      <div class="card" style="width:300px" >
+        <img class="card-img-top sandal-img" src="{{ product.image.url }}" height="250px" > 
+        <div class="card-body">
+          <h3>{{ product }}</h3>
+          <p class="card-text">{{ product.price }}</p>
+          <p class="card-text">{{ product.description }}</p>
+          <a href="{% url 'polls:update' product.id %}"   class="btn btn-primary">Update</a>  
+          <a href="{% url 'polls:delete' product.id %}"   class="btn btn-danger">Delete</a>  
+        </div>
+      </div>
+    </div>
+      
+   
+
+
+
+
+
+
+            
+            {% empty %}
+            
+            
+            
+              <H3> No products added yet. </H3>
+                  {% endfor %}
+    </div>
+  </div>
+  
+
+
+  <h6>Click here to add another product</h6><a style="color: #330c0c;"
+    href="{% url 'polls:addproduct' %}">Addproduct</a>
+  {% else %}
+  <div class="alert alert-danger alert-dismissible">
+
+    <strong>Warning!</strong> This page is only authorized for Merchants only.
+  </div>
+  Click here to go back to homepage <a href="{% url 'polls:home' %}">Homepage</a>
+  {% endif %}
+</body>
+
+</html>

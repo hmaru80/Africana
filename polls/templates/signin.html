@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{%block content %}
+
+<form action="{% url 'polls:signin' %}" method="post" style=" position: absolute;
+top: 50%;
+left: 50%;
+width: 400px;
+padding: 40px;
+transform: translate(-50%, -50%);
+background: rgba(0,0,0,.5);
+box-sizing: border-box;
+box-shadow: 0 15px 25px rgba(0,0,0,.6);
+border-radius: 10px;" >
+<h2 style="color: blanchedalmond;">Login</h2>
+    {% csrf_token %}
+    <label for="Username" style="color: blanchedalmond;">Your name</label><br>
+    <input type="text" name="Username" id="" placeholder="your username">
+    
+    
+    
+    <br><br>
+    <!-- <label for="email">Your email</label><br>
+    <input type="email" name="email" id="" placeholder="type email">
+    <br><br> -->
+    <label for="password" style="color: blanchedalmond;">Enter Password</label><br>
+    <input type="password" name="password" placeholder="Secret password" >
+    <br><br>
+
+    
+    
+    <!-- <textarea cols="30" rows="10"></textarea> -->
+    <input type="submit" value="Login" class="btn btn-outline-success">
+    <p>If you want to register click here <a href="{% url 'polls:signup' %}">Register</a></p>
+</form> <br>
+
+
+
+
+
+
+{% endblock %}

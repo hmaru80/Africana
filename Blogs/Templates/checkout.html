@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .mini{
+    border: 1px solid white;
+    padding: 5px;
+  }
+</style>
+
+<h2>Payment Module</h2>
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+
+      <div class="container "  style="display: grid; grid-template-columns: 3fr 1fr;">
+        <div class="mini">
+        <h5><u>Fill in your delivery Info</u></h5><br>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="">Enter your fullnames</label><br>
+            {{ form.title }} <br><br>
+            <label for="">Enter your phone number</label><br>
+            {{ form.phone }}<br><br>  
+            <label for="">Enter Country,town, delivery Address, street and House </label><br>
+            {{ form.description }} <br><br>
+            
+            <!-- {{ form.title }}
+            {{ form.title }} -->
+            <input type="submit" value="Send Info">
+            
+
+        </form>
+      </div>
+      <div class="mini">
+          <p>  Your Total is {{ total_price }}</p>
+              <h6>Kindly choose Your payment option here</h6>
+            </div>
+    </div>
+<br><br>
+<div class="footer"><H6>Click here to dowload your invoice <a href="{% url 'Blogs:invoice' %}" style="text-decoration: none;  border-radius: 1px solid blue;">Download</a></H6></div>
+
+      {% endblock %}

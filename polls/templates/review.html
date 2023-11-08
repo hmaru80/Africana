@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+ <center><h2>Fill this form to help us rate our products for better services</h2> <br><h4>(This will only take a minute.)</h4><br></center>
+<div class="review-form" style="display: flex;justify-content: center;">
+ <form action=""  method="post">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Review">
+   </form>
+</div>
+    {% endblock %}
+    

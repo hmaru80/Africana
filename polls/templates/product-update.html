@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Update</title>
+    <style>.layout {
+        width: 1366px;
+        height: 768px;
+      
+        display: grid;
+        grid:
+          "header" auto
+          "main" 1fr
+          "footer" auto
+          / 1fr;
+        gap: 8px;
+      }
+      input{
+        width: 60%;
+        
+      }
+      a{
+        border: 2px solid #1a1247;
+        font-size: 20px;
+        color: #d4cfe6;
+      }
+      form{
+        border: 1px solid white;
+            }
+    button {
+        padding: 10px 20px;
+        margin: 7px;
+        font-size: 18px;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        transition: 0.5s;
+        background: #361515;
+        color: #ecf1e3;
+        box-shadow: 0 0 10px #363636, inset 0 0 10px #363636;
+        }
+
+    button:hover {
+    animation: a 0.5s 1 linear;
+    }
+
+    @keyframes a {
+    0% {
+        transform: scale(0.7, 1.3);
+    }
+
+    25% {
+        transform: scale(1.3, 0.7);
+    }
+
+    50% {
+        transform: scale(0.7, 1.3);
+    }
+
+    75% {
+        transform: scale(1.3, 0.7);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+    }
+      .header { grid-area: header; }
+      .main { grid-area: main; }
+      </style>
+</head>
+<body style="background-color: #5b9b87;">
+
+
+    <!-- Header -->
+    <div class="header" style="text-align: center;"><h2>Update your product here.</h2></div><br><br><br>
+        <!-- Main -->
+    <div class="main">
+
+            <form action="{% url 'polls:update' productid %}" method="post" style="text-align: center;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Update</button>
+            </form>
+    </div>
+    <!-- Footer -->
+    <h2>Go back to products  <a href="{% url 'polls:productlist' %}">Products page</a></h2>
+</body>
+</html>

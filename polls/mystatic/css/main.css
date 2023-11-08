@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
+/* // importing core styling file */
+@import "./fontawesome/scss/fontawesome.scss";
+
+@import "./fontawesome/scss/solid.scss";
+@import "./fontawesome/scss/brands.scss";
+@import "path/to/font-awesome/less/font-awesome.less";
+
+ @-webkit-keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+            transform: translateZ(12px);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+            transform: translateZ(12px);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.focus-in-contract-bck{-webkit-animation:focus-in-contract-bck 5s cubic-bezier(.25,.46,.45,.94) both;animation:focus-in-contract-bck 5s cubic-bezier(.25,.46,.45,.94) both }
+
+
+li{
+  color: aliceblue;
+}
+div{
+  font-family: 'Fira Sans', sans-serif;
+  
+  background-color:#5b8f68 ;
+}
+.signup-form{
+  display: flex;
+  justify-content: center;
+}
+.contact-link{
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  color: #e2ebf3;
+
+ 
+
+}
+
+.links{
+  padding: 10px;
+  border: 5cap;
+  margin: 1%;
+}
+.signup-tag{
+  align-items: end;
+}
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+.nav-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #26442e;
+  }
+  
+.nav-list {
+    float: left;
+    text-decoration: none;
+  }
+.cart-button:hover{
+  background-color: #26442e;
+}  
+.nav-list a {
+    display: block;
+    /* color: white; */
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    
+  }
+  
+  .nav-list a:hover {
+    background-color: #88dd9a;
+    color: black;
+  }
+
+  .sandal-img{
+    max-width: 200px;
+    max-height: 250px;
+  }
+
+.card{
+  margin: 10px;
+  max-height: 700px;
+  
+  padding: 1px;
+  align-items: normal;
+}
+p{
+  font-weight:bolder;
+}
+/* Product search page main section begins here */
+.layout-section {
+  width: 866px;
+  height: 768px;
+
+  display: grid;
+  grid:
+    "header" auto
+    "main" 1fr
+    "footer" auto
+    / 1fr;
+  gap: 8px;
+}
+
+.header-section { grid-area: header; }
+.main-section { grid-area: main; }
+.footer-section { grid-area: footer; }
+/* section ends here...productsearch */
+
+
+/* Searched items begins here */
+.layout-productsearch{
+  width: 1366px;
+  height: 768px;
+
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+/* Searched items end here */
+
+#check-out{
+border-radius: 0px;
+height: 400px;
+color: antiquewhite;
+background: hsl(180, 100%, 13%);
+box-shadow:  6px 6px 0px #003939,
+             -6px -6px 0px #004747;
+}
+.nav-links{
+  color: white !important;
+}

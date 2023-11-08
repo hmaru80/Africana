@@ -1,0 +1,38 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if form.errors %}
+THERE WAS AN ERRR SAVING YOUR INFORMATION
+
+{% endif %}
+<!-- #form as p allows to view paragraghs in the form -->
+<div class="sign-up-form" style="display: flex;justify-content: center;" >
+    <h2 style="border-radius: 37px;  color: #366653;background: #b6e7a5;box-shadow:  -5px 5px 0px #93bb86,5px -5px 0px #d9ffc4;">Register</h2><br><br>
+
+    <form action="{% url 'polls:signup' %}" method="post"  style=" margin: 2%; position: absolute;top: 95%;left: 50%;width: 400px;padding: 40px;transform: translate(-50%, -50%);background: rgba(0,0,0,.5);box-sizing: border-box;box-shadow: 0 15px 25px rgba(0,0,0,.6);border-radius: 10px;color: #8297db;" >
+        {% csrf_token %}
+              {{ form.as_p }}  
+
+              
+              
+              <input type="submit" value="Register" class="btn btn-outline-success">
+
+              <p style="padding: 1px; font-weight: 600;" >Already have an account?
+                  <a href="{% url 'polls:signin'%}" class="btn btn-outline-success">Login</a>
+              </p>
+            
+    </form>
+
+</div>
+
+    {% endblock %}
+
+
+
+
+
+        

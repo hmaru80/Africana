@@ -1,0 +1,65 @@
+<!-- djangotemplates/example/templates/index.html-->
+
+{% load static %}
+<!DOCTYPE html>
+<!-- use it  below for dark mode....data-bs-theme="dark" -->
+<html lang="en"   >
+<head>
+  <meta charset="UTF-8">
+  <title>Africana</title>
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" >
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.com/fn/sa/fontawesome/6.4.2/css/fontawesome-all.min.css">
+  <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
+</head>
+<body  style="background-color: #5b8f68;">
+  
+      
+    <ul class="nav-bar" >
+      <li class="nav-list" ><a href="{% url 'polls:home' %}" style="color: #44e48c;">Go Home</a></li>
+
+      <li class="nav-list"><a class="nav-links"style="color: #cfc5c5;" href="{% url 'Blogs:about' %}">About This Site</a></li>
+      <li class="nav-list"><a class="nav-links"style="color: #cfc5c5;" href="{% url 'polls:contact' %}">Contact us</a></li>
+      <li class="nav-list"><a class="nav-links"style="color: #cfc5c5;" href="{% url 'polls:review' %}">Reviews</a></li>
+    
+       
+      
+   </ul>
+   
+        {% if user.is_authenticated %}
+        
+        <div class="topright"><a href="{% url 'polls:logout'%}" class="signup-tag" style="color: #b22222;"> Log out</a></div>
+         <p class="focus-in-contract-bck" ><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>  Hello {{ user }}</p>
+         <a style=" color: #0e0d0d;padding: 2px ; border: 1px solid #e0ddf0;" class="nav-links" href="{% url 'polls:reset' %}">Change Password</a>
+            {% else%}
+            <div class="topright"> <a href="{% url 'polls:signin'%}" class="signup-tag">Sign up/Sign in</a></div>
+            
+               {% endif%}
+            {% if messages %}
+     
+                {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>{{message}}</strong>
+                </div>
+                 
+        {% endfor %} 
+   {% endif %}
+
+   {% block content %}
+
+   {% endblock %}
+   <!-- #121212 color code for dark mode-->
+   <!-- <footer><a href="#">Click here for a suprise</a></footer> -->
+</body>
+</html>

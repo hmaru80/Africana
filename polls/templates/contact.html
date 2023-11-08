@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h3>Fill out this form to talk to our agents</h3>
+  <div class="form-class" style="display: flex;justify-content: center; ">   <form  class=""  action="mailto:butcherloco3@gmail.com" method="post" >
+
+            <label for="Name">Name</label><br>
+            <input type="text" id="name" name="name" placeholder="Your Name"/><br><br>
+            <label for="phone number">Telephone</label><br>
+            <input type="tel" id="number" placeholder="Number" name="number" pattern="[0-9]{1,2}[-. ][0]"><br><br>
+            <label for="email">Email</label><br>
+            <input type="email" id="email"  placeholder="Your email" name="email" /><br><br>
+            <label for="message">Message</label><br>
+            <textarea rows="4" placeholder="Type message here" cols="50"></textarea><br><br>
+            <button class="btn btn-primary"  type="submit">Submit</button>   
+
+
+
+            
+        </form>
+    </div> 
+    <h5>Talk to us via the listed platforms, drop a follow on X and Instagram </h5>
+
+    <div class="contact-link">
+        <div class="links">    <a href="https://wa.me/+254724014957">Whatsapp</a>
+        </div>
+
+        <div class="links"><a href="https://instagram.com">Instagram</a></div>
+    
+        <div class="links">    <a href="https://twitter.com/">X</a>
+        </div>
+    </div>
+    <strong>Contact Admin via Whatsapp  to be verified as a Merchant so as to sell on our page.</strong>
+{% endblock %}

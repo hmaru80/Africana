@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <style>
+        .parent {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 11px;
+grid-row-gap: 10px;
+}
+
+
+
+        .con-tain{
+            display: grid;
+            grid-template-columns: 0.5fr 2fr 1.5fr;
+            
+        }
+        .new{
+            border: 1px solid green;
+            height: 350px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+ 
+   <div class="parent">
+    
+    <div class="new">Home</div>
+    <div class="new">Main</div>
+    <div class="new">Actions</div>
+    <div class="new">Actions</div>
+    <div class="new">Actions</div>
+    <div class="new">Actions</div>
+    <div class="new">Actions</div>
+    <div class="new">Actions</div>
+    <div class="new">Actions</div>
+   </div>
+
+
+</body>
+</html>
+              <!-- <form action="{% url 'polls:addquantity' item.product.id %}" method="post">
+                  {% csrf_token %}
+                  <button class="quantity-btn increase-quantity" type="submit">+</button>
+              </form>
+                 <form action="{% url 'polls:reducequantity' item.product.id %}" method="post">
+                  {% csrf_token %}
+                  <button class="quantity-btn decrease-quantity" type="submit">-</button>
+              </form>
+                  <form action="{% url 'polls:remove_from_cart' item.product.id %}" method="post">
+                  {% csrf_token %}
+                  <button class="remove-from-cart-btn" type="submit">Remove</button>
+
+                  
+              </form>
+
+import requests
+import pandas as pd
+
+# Define the URL of the Excel document
+url = "https://example.com/excel-document.xlsx"
+
+# Download the Excel document
+response = requests.get(url)
+
+# Convert the Excel document to a Pandas DataFrame
+df = pd.read_excel(response.content)
+
+# Submit the DataFrame to a form
+requests.post("https://example.com/form", data=df.to_dict())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def create_review(request, pk):
+product = Product.objects.get(pk=pk)
+if request.method == 'POST':
+review = Review(title=request.POST['title'], text=request.POST['text'], rating=request.POST['rating'])
+review.product = product
+review.save()
+return redirect('home')
+else:
+return render(request, 'create_review.html', {'product': product})
+
+def detail(request, pk):
+product = Product.objects.get(pk=pk)
+reviews = product.reviews.all()
+return render(request, 'detail.html', {'product': product, 'reviews': reviews})
