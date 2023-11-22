@@ -7,12 +7,15 @@ from django.contrib.auth.models import User
 
 class Task(models.Model):
     
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    taskedby=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    title = models.CharField(max_length=200,blank=False)
+    description = models.TextField(blank=False)
     completed = models.BooleanField(default=False)
     created_on=models.DateTimeField(auto_now_add=True )
     due_by=models.DateTimeField(blank=True, null=True)
-    phone= models.CharField(max_length=13, default=False)
+    phone= models.CharField(max_length=13,blank=False)
+    
+
     
 
     def __str__(self):

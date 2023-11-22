@@ -1,11 +1,21 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Task
+from django.contrib import messages
 from .forms import TaskForm
 
 def view_task(request):
-    tasks = Task.objects.order_by('created_on')
+    tasks = Task.objects.filter(completed =False)
+   
     return render(request, 'index.html', {'tasks': tasks})
+    
+def deliver_task(request,id):
+
+    obj = Task.objects.get(id=id)
+    obj.completed = True
+    obj.save()
+    messages.success(request, ('Order posted succesfully'))
+    return redirect('tasks:task_list')
 
 def task(request, task_id):
     task = get_object_or_404(Task, pk=task_id)

@@ -22,10 +22,10 @@ class RegistrationForm(UserCreationForm):
     ("FM", "FEMALE"),
     ("NA", "NON-BINARY")
     )
-    email = forms.EmailField(widget = forms.EmailInput(attrs={'class':'form-control'}))
-    first_name = forms.CharField(max_length=20, widget = forms.TextInput(attrs={'class':'form-control'}))
-    last_name = forms.CharField(max_length=20, widget = forms.TextInput(attrs={'class':'form-control'}))
-    gender =  forms.ChoiceField(choices=Sex )
+    email = forms.EmailField(widget = forms.EmailInput(attrs={'class':'form-control'}),required=True)
+    first_name = forms.CharField(max_length=20, widget = forms.TextInput(attrs={'class':'form-control'}),required=True)
+    last_name = forms.CharField(max_length=20, widget = forms.TextInput(attrs={'class':'form-control'}),required=True)
+    gender =  forms.ChoiceField(choices=Sex,required=True )
 
     class Meta:
         model = User

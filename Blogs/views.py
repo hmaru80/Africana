@@ -7,22 +7,31 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from polls.forms import Rating
 from tasks.forms import TaskForm
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Sum
 
 
 
 
 
-def Your_invoice(request):
-    response=HttpResponse(content_type='text/plain')
-    response['Content-Disposition '] = 'attachment; filename= invoice.text'
-    cart= CartItem.objects.all()
-    
-   
-    inside=[]
-    for item in cart:
-        see=item.product.price*item.quantity
-        
-        inside.append(f'{item}\n{see}\n')
+
+
+def your_invoice(request):
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=invoice.txt'
+
+    try:
+        cart_items = CartItem.objects.filter(user=request.user)
+    except ObjectDoesNotExist:
+        return HttpResponse('Error: Cart does not exist for this user.')
+
+    cart_subtotal = cart_items.aggregate(Sum('total_price'))
+    cart_total = cart_subtotal['total_price__sum']
+
+    inside = [f'{cart_item.product}\n{cart_item.quantity} x ${cart_item.product.price} = ${cart_item.total_price}\n' for cart_item in cart_items]
+    inside.append(f'\nSubtotal: ${cart_subtotal["total_price__sum"]}\n')
+    inside.append(f'Tax: $0\n')
+    inside.append(f'Total: ${cart_total}\n')
 
     response.writelines(inside)
     return response
@@ -36,6 +45,8 @@ def Pay_here(request):
     if request.method=='POST':
         form=TaskForm(request.POST)
         if form.is_valid():
+            usertask= form.save(commit=False)
+            usertask.taskedby=user
             form.save()
             # order.ordered_by= user
             messages.success(request, "Your delivery information submitted succesfully, kindly proceed to payment")

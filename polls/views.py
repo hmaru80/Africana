@@ -20,11 +20,14 @@ from django.shortcuts import get_object_or_404
 
 @login_required(login_url='polls:signin')
 def create_review(request):
-        
+        user =request.user
         
         if request.method == 'POST':
-            form = Rating(request.POST)
+            
+            form = Rating(request.POST,)
             if form.is_valid():
+                    reviewform= form.save(commit=False)
+                    reviewform.reviewer=user 
                     form.save()
             messages.success(request,"product reviewed successfully")       
             return redirect('polls:home')
@@ -71,11 +74,9 @@ def some_view(request):
 
 @login_required(login_url='polls:signin')
 def Pay_here(request):
-        cart = Cart.objects.get(user=request.user)
-        cart_items = CartItem.objects.filter(cart=cart)
-        for item in cart_items:
-          
-            total_price = sum(item.quantity * item.product.price for item in cart_items)
+        
+        cart_items = CartItem.objects.filter(user=request.user)
+        total_price = sum(item.quantity * item.product.price for item in cart_items)
         return render(request,'checkout.html' ,{'cart_items':cart_items , 'total_price':total_price})
 
 @login_required(login_url='polls:signin')
@@ -135,7 +136,7 @@ def remove_from_cart(request, product_id):
     
     product = get_object_or_404(Product, id=product_id)
     # cart = CartItem.objects.filter( id=product_id)
-    items = CartItem.objects.get(product=product)
+    items = CartItem.objects.get(product=product, user= request.user)
    
     items.delete()
 
@@ -153,18 +154,20 @@ def remove_from_cart(request, product_id):
 # Create a view to view the cart.
 @login_required (login_url='polls:signin')
 def view_cart(request):
+    
     # Get the cart for the current user.
 
     
-    contents= CartItem.objects.filter(user=request.user)
-    # contents =CartItem.objects.all()
-    total_price = sum(item.quantity * item.product.price for item in contents)
+    contents= CartItem.objects.filter(user =request.user)
+    # breakpoint()
 
-    for item in contents:
-        product_price =  (item.product.price * item.quantity )
-        
+   
+    total_price = sum( item.quantity * item.product.price for item in contents )
 
-    return render(request, 'invoicing.html', {'contents':contents, 'total_price':total_price})
+    
+    
+
+    return render(request, 'invoicing.html', {'contents':contents,'total_price':total_price})
     
 
 
@@ -274,7 +277,7 @@ def Signup(request):
             password = form.cleaned_data["password1"]
             user = authenticate(username = username, password=password)
             login(request, user)
-            request.user = CartItem.objects.create()
+            
            
 
             messages.success(request, ('Login successfull '))
@@ -298,6 +301,8 @@ def Login_user(request):
                 login(request, user)
                 if user.groups.filter(name='Merchant').exists():
                     return redirect ( 'polls:addproduct')
+                elif user.groups.filter(name='Support').exists():
+                     return redirect ('tasks:task_list')
                 return redirect( 'polls:home')
         
         else:
@@ -318,15 +323,36 @@ def Logout_user(request):
     
 def user_list(request):
     users = User.objects.all()
-    
+    item = CartItem.objects.filter().order_by('user')
+    # users = User.objects.all()
+    # cart_items = {}
 
-    subject = 'Hello'
-    message = 'This is a test email.'
-    from_email = 'your_email@gmail.com'
-    recipient_list = ['recipient_email@gmail.com', ]
+    # for user in users:
+    #     cart_items[user] = CartItem.objects.filter(user=user).order_by('user')
 
-    send_mail(subject, message, from_email, recipient_list)
-    return render(request, 'card-hover.html', {'users': users})   
+
+
+    return render(request, 'card-hover.html', {'users': users ,'item':item})   
+    # return render(request, 'card-hover.html', {'users': users ,'cart_items':cart_items})
+
+
+
+   
+   
+
+
+    # subject = 'Hello'
+    # message = 'This is a test email.'
+    # from_email = 'your_email@gmail.com'
+    # recipient_list = ['recipient_email@gmail.com', ]
+
+    # send_mail(subject, message, from_email, recipient_list)
+
+
+
+
+
+
 # Addto cart
         # def add_to_cart(request, product_id):
         #     product = Product.objects.get(pk=product_id)

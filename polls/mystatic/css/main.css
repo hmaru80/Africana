@@ -50,7 +50,7 @@ li{
 div{
   font-family: 'Fira Sans', sans-serif;
   
-  background-color:#5b8f68 ;
+  background-color:#5f84c4
 }
 .signup-form{
   display: flex;
@@ -85,7 +85,7 @@ div{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #26442e;
+    background-color: #5f84c4;
   }
   
 .nav-list {
@@ -105,7 +105,7 @@ div{
   }
   
   .nav-list a:hover {
-    background-color: #88dd9a;
+    background-color: #c8c6d8;
     color: black;
   }
 
