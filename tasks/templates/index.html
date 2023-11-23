@@ -25,6 +25,7 @@
     </header>
     <div class="container mt-3">
     <div class="row">  
+        {% if "Support" in group_names %}
                 {%  for task in tasks %}
                 <div class="col-sm-4" >
                 <div class="w3-card-4"  >
@@ -49,11 +50,17 @@
             </div>
                 {% endfor %}
 
+               
+    </div>
+    </div>
     </div>
 </div>
 
-        
-        
+{% else %}
+   <h1> Sorry .....page not available.</h1>  
+   
+   <h4>Click here to go back to homepage <a href="{% url 'polls:home' %}">Homepage</a></h4>
+{% endif %}        
         
         
         

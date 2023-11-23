@@ -1,13 +1,16 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Task
+from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import TaskForm
 
 def view_task(request):
     tasks = Task.objects.filter(completed =False)
-   
-    return render(request, 'index.html', {'tasks': tasks})
+    user = request.user
+    merchantgroup=user.groups.all() #lists all the groups
+    group_names= [group.name for group in merchantgroup] #creates a loop to check for a group name
+    return render(request, 'index.html', {'tasks': tasks,'group_names':group_names})
     
 def deliver_task(request,id):
 
