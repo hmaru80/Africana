@@ -2,18 +2,21 @@
 from django.urls import reverse_lazy
 from django.urls import  path
 from django.contrib.auth import views as auth_views 
-from .views import Homepage,Contactus, user_list,Signup,some_view,create_review, Login_user,decrease_cart_item,Logout_user,AddProducts,increase_cart_item,Productlist,Productsearch,Deleteproduct,Updateproduct,add_to_cart,remove_from_cart,view_cart
+from .views import Homepage,All_products,Contactus, user_list,Signup,some_view,create_review, Login_user,decrease_cart_item,Logout_user,AddProducts,increase_cart_item,Productlist,Productsearch,Deleteproduct,Updateproduct,add_to_cart,remove_from_cart,view_cart
 app_name = "polls"
+# handler404 = 'error_404_view'
 
 urlpatterns = [
     # path('', HomePageView.as_view(), name='homepage'), # Notice the URL has been named
     # path('about', Aboutpage, name="about"),
     path('', Homepage,name="home"),
+    path('products', All_products,name="products"),
     path('contact', Contactus, name='contact'),
     path('signup', Signup, name='signup'),
     path('signin', Login_user, name='signin'),
     path('logout', Logout_user, name='logout'),
     path('users', user_list, name='users'),
+    
     path('password/', auth_views.PasswordChangeView.as_view(success_url = reverse_lazy('polls:signin'),template_name='passwordreset.html'), name='reset'),    # path('password/', PasswordChangeView.as_view(template_name='passwordreset.html')),
     
 

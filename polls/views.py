@@ -16,6 +16,15 @@ from io import BytesIO
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+from django.http import HttpResponse, Http404, HttpResponseNotFound
+
+# def error_404_view(request, exception):
+#     return HttpResponseNotFound("go home")
+
+   
+    
+    
 
 
 @login_required(login_url='polls:signin')
@@ -82,8 +91,9 @@ def Pay_here(request):
 @login_required(login_url='polls:signin')
 def decrease_cart_item(request, product_id):
     product = get_object_or_404(Product,pk=product_id)
+    user = request.user
     
-    cart_item= CartItem.objects.get(product=product)
+    cart_item= CartItem.objects.get(product=product , user=user)
 
     if cart_item.quantity > 1:
         cart_item.quantity -= 1
@@ -246,7 +256,7 @@ def AddProducts(request):
 
 
 
-def Homepage(request):
+def All_products(request):
     user= request.user
     product_list = Product.objects.all()
     merchantgroup=user.groups.all() #lists all the groups
@@ -255,8 +265,9 @@ def Homepage(request):
     return render(request, 'homepage.html', {'product_list': product_list,'group_names':group_names})
 
 
-# def Aboutpage(request):
-#     return render (request,'about.html')
+def Homepage(request):
+    random_products = Product.objects.order_by('?')[:3]
+    return render (request,'welcome.html',{'random_products':random_products})
 
 
 

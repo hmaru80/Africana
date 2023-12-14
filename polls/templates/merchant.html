@@ -38,18 +38,21 @@
 {% endfor %}
 
 {% endif %}
-<h1>Add new Product</h1>
+
 <!-- The form begins here -->
 {% if "Merchant" in group_names %}
         <div class="container">
+            <center>
         <form action="{% url 'polls:addproduct' %}"  method="post" enctype="multipart/form-data" style="align-self:center;" >
             {% csrf_token %}
+            <h1>Add new Product</h1>
             {{ form.as_p }}
             <input type="submit" value="Add Product">
         </form>
+    </center>
         </div>
 
-<br><br><br><br>
+<br><br><br>
 <h6>Click here to add another product</h6><a style="color: #330c0c;" href="{% url 'polls:addproduct' %}">Addproduct</a>
 <br>
 

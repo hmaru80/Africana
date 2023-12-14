@@ -10,34 +10,42 @@ from .models import Review,Product
 #Product form #use _all_ to import all fields
 class NewProduct(ModelForm):
     class Meta:
+        
         model = Product
         # fields = '__all__'
         exclude = ('owner',)
 
 #form control bootstrap css class is added to the fields below registered to django registration form
 
-class RegistrationForm(UserCreationForm):
-    Sex = (
-    ("ML","MALE"),
-    ("FM", "FEMALE"),
-    ("NA", "NON-BINARY")
-    )
-    email = forms.EmailField(widget = forms.EmailInput(attrs={'class':'form-control'}),required=True)
-    first_name = forms.CharField(max_length=20, widget = forms.TextInput(attrs={'class':'form-control'}),required=True)
-    last_name = forms.CharField(max_length=20, widget = forms.TextInput(attrs={'class':'form-control'}),required=True)
-    gender =  forms.ChoiceField(choices=Sex,required=True )
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
+
+class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter unique name'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter First name'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Last name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter email'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter Password'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}),
+        }
 
-#this fucntion allows adding bootstrap class form to fields named form control
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['password1'].widget.attrs['class'] = 'form-control'
-        self.fields['password2'].widget.attrs['class'] = 'form-control'
-
+        self.fields['gender'] = forms.ChoiceField(
+            choices=[
+                ('ML', 'MALE'),
+                ('FM', 'FEMALE'),
+                ('NA', 'NON-BINARY')
+            ],
+            required=True
+        )
+        self.fields['gender'].widget.attrs.update({'class': 'form-control'})
 
 class Rating(ModelForm):
     
