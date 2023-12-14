@@ -144,7 +144,9 @@ p{
 .main-section { grid-area: main; }
 .footer-section { grid-area: footer; }
 /* section ends here...productsearch */
-
+.product-card{
+    background-color: grey;
+}
 
 /* Searched items begins here */
 .layout-productsearch{
