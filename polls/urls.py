@@ -2,7 +2,7 @@
 from django.urls import reverse_lazy
 from django.urls import  path
 from django.contrib.auth import views as auth_views 
-from .views import Homepage,All_products,Contactus, user_list,Signup,some_view,create_review, Login_user,decrease_cart_item,Logout_user,AddProducts,increase_cart_item,Productlist,Productsearch,Deleteproduct,Updateproduct,add_to_cart,remove_from_cart,view_cart
+from .views import *
 app_name = "polls"
 # handler404 = 'error_404_view'
 
@@ -55,6 +55,7 @@ urlpatterns = [
     path('productdelete/<int:productid>/', Deleteproduct, name='delete'),
     path('addtocart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('emptycart/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
+    path('viewproduct/<int:productID>/', ViewProduct, name='viewproduct'),
     path('viewcart',view_cart , name='viewcart'),
     path('info',some_view , name='info'),
     path('review',create_review , name='review'),

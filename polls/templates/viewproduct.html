@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<h2>{{view.name}}</h2>
+
+
+
+<div class="container "  style="display: grid; grid-template-columns: 3fr 1fr;">
+    
+    <div class="mini">
+        {{view.description}}
+        {{view.price}}
+    </div>
+    <div class="mini">
+        
+        <img class="card-img-top sandal-img" src="{{ view.image.url }}" style="height: fit-content; width: fit-content;" >
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

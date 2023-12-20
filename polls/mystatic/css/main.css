@@ -49,8 +49,10 @@ li{
 }
 div{
   font-family: 'Fira Sans', sans-serif;
+  color: #e2ebf3;
+  /* font-weight: 100;
+  color: #3bd80d; */
   
-  /* background-color:#06100b */
 }
 .signup-form{
   display: flex;
@@ -112,8 +114,8 @@ div{
   }
 
   .sandal-img{
-    max-width: 200px;
-    max-height: 250px;
+    max-width: 345px;
+    max-height: 350px;
   }
 
 .card{
@@ -123,9 +125,7 @@ div{
   padding: 1px;
   align-items: normal;
 }
-p{
-  font-weight:bolder;
-}
+
 /* Product search page main section begins here */
 .layout-section {
   width: 866px;

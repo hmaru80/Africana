@@ -252,7 +252,18 @@ def AddProducts(request):
     else:
          form =NewProduct()      
     return render(request, 'merchant.html',{'form': form, 'group_names':group_names})
-    
+
+
+# view a product
+def ViewProduct(request, productID):
+    user = request.user
+
+    view=Product.objects.get(id=productID)
+
+    return render(request, 'viewproduct.html', {'view':view})
+     
+
+
 
 
 

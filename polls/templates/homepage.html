@@ -16,7 +16,7 @@
 
 
 
-<form class="d-flex" action="{% url 'polls:product-search' %}" method="post" style="border: 1cqb solid rgb(142, 183, 207); display:flex;justify-content: center;">
+<form class="d-flex" action="{% url 'polls:product-search' %}" method="post" style="border: 1cqb solid #2a2b2b; display:flex;justify-content: center;">
   {% csrf_token %}
   <input type="search" autocomplete="on" placeholder="search all products" name="search" class="form-control me-2">
   <button class="bn" type="submit" >search</button>
@@ -28,13 +28,13 @@
                 {% for product in product_list %}
                 
               <div class="col-sm-4">
-                <div class="card product-card" style="width: 350px;height: 450px;background-color: #f04b4b;" >
+                <div class="card product-card" style="width: 350px;height: 450px;background-color: #2c3e33;" >
                   <img class="card-img-top sandal-img" src="{{ product.image.url }}" style="height: 200px; width: fit-content;" > 
                   <div class="card-body">
-                    <h3>{{ product }}</h3>
-                    <p class="card-text">{{ product.price }}</p>
-                    <p class="card-text">{{ product.description }}</p>
-                    <a href="{{ product.image.url }}"   class="btn btn-primary">View</a>  
+                    <h3 style="color: #bbe9cc;">{{ product }}</h3>
+                    <p class="card-text"style="color: #bbe9cc;">{{ product.price }}</p>
+                    <p class="card-text" style="color: #bbe9cc;">{{ product.description }}</p>
+                    <a href="{% url 'polls:viewproduct' product.id %}"   class="btn btn-primary">View</a>  
                     <form action="{% url 'polls:add_to_cart' product.id %}" method="post">
                       {% csrf_token %}
                       <button value="cart-item" class="add-to-cart-btn update-cart">Add to Cart <i class="fa fa-shopping-cart"></i></button>

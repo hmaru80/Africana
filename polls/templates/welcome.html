@@ -76,7 +76,7 @@ nav{
   display: flex;
   justify-content: center;
   --color-text: #ffffff;
-  --color-background: #ff135a;
+  --color-background: #4c222f;
   --color-outline: #ff145b80;
   --color-shadow: #00000080;
 }
@@ -177,15 +177,15 @@ nav{
     outline-offset: 0;
   }
 }
-
+/* style="background: url('{% static "img/africa.png " %}');  " */
 
     </style>
 
  
 <br><br><br>
-  <div class="home-div">
+  <div class="home-div" >
     <h1  style="font-family:'Arial Black' ; font-weight: bold;">Welcome to Africana!</h1>
-    <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 25px;">
+    <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 25px; color: #412626;">
       Africana is an innovative ecommerce platform that specializes in offering a wide range of African-inspired products, including clothing, accessories, home decor, and artisanal crafts. 
     </p>
 
@@ -197,18 +197,10 @@ nav{
                     {% for product in random_products %}
                     
                   <div class="col-sm-4">
-                    <div class="card product-card" style="width: 350px;height: 450px;background-color: #f04b4b;" >
-                      <img class="card-img-top sandal-img" src="{{ product.image.url }}" style="height: 200px; " > 
-                      <div class="card-body">
-                        <h3>{{ product }}</h3>
-                        <p class="card-text">{{ product.price }}</p>
-                        <p class="card-text">{{ product.description }}</p>
-                        <a href="{{ product.image.url }}"   class="btn btn-primary">View</a>  
-                        <form action="{% url 'polls:add_to_cart' product.id %}" method="post">
-                          {% csrf_token %}
-                          <button value="cart-item" class="add-to-cart-btn update-cart">Add to Cart <i class="fa fa-shopping-cart"></i></button>
-                      </form>
-                      </div>
+                    <div class="card product-card" style="width: 350px;height: 450px;background-color:transparent;border: 1px solid black;" >
+                      <a href="{% url 'polls:viewproduct' product.id %}"  > 
+                      <img class="" src="{{ product.image.url }}" style="width: 345px;height: 440px;"  > </a>
+                     
                     </div>
                   </div>
                 

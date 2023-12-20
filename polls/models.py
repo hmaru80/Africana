@@ -21,6 +21,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='mystatic/img', blank=False)
     image2 = models.ImageField(upload_to='mystatic/img', blank=True)
     image3 = models.ImageField(upload_to='mystatic/img', blank=True)
+    model=models.CharField(max_length=10, blank=True, null=True)
+    specs =models.TextField(max_length=200, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
 
     def __str__(self):
