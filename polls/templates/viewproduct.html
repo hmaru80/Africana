@@ -7,17 +7,26 @@
 
 
 
-<div class="container "  style="display: grid; grid-template-columns: 3fr 1fr;">
-    
-    <div class="mini">
-        {{view.description}}
-        {{view.price}}
-    </div>
-    <div class="mini">
+<div class="products "  style="display: grid; grid-template-columns: 2.5fr 1.5fr; margin: 5px ;border: 1px solid black;">
+    <div class="mini" style="height: 700px;">
         
-        <img class="card-img-top sandal-img" src="{{ view.image.url }}" style="height: fit-content; width: fit-content;" >
+        <img class="" src="{{ view.image.url }}" style=" width: 100%;height: 80%;" >
 
     </div>
+    <div class="mini" style="margin: 13px;" >
+        <!-- {{view.description}}
+        {{view.price}} -->
+        <h3>Specifications</h3>
+        <p  style="color: #370e10;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatibus, nulla dignissimos a quas natus in mollitia atque consequatur omnis similique sit numquam reprehenderit inventore nostrum, deleniti ducimus aspernatur voluptate.</p>
+        <h4>Description</h4>
+        <p  style="color: #370e10;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui necessitatibus officiis quam odio? Suscipit nulla quibusdam incidunt provident, explicabo dolore voluptas! Deserunt cumque adipisci quod autem beatae placeat praesentium maxime.
+        Iste porro harum, nulla commodi voluptatem dolores qui nihil cum dolor aperiam aliquid ducimus, enim quidem quis illo dolorem a tenetur officiis, tempora inventore unde ab autem saepe! Modi, eos!</p>
+
+        <h1 style="color: black;">Price 
+            <h3 style="color: black;">${{view.price}} </h3></h1>
+    </div>
+    
+    <a href="{% url 'polls:products' %}">Go Back to products</a>
     </div>
 
 
